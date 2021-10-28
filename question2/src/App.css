@@ -1,0 +1,78 @@
+html,
+body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82) no-repeat fixed;
+	font-family: sans-serif;
+	font-weight: 100;
+}
+
+#root {
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%);
+}
+
+.searchLine {
+  text-align: right;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  height: 2rem;
+  color: #fff;
+  background-color: #55608f;
+  border: 1px #fff;
+  border-collapse: collapse;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 0 0.5rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+th,
+td {
+	padding: 1rem;
+	background-color: rgba(255, 255, 255, 0.2);
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+
+thead th{
+		background-color: #55608f;
+}
+
+tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+tbody td {
+  position: relative;
+}
+
+tbody td:hover::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: -1;
+}

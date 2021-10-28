@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<header>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</header>
+<style>
+    html,
+    body {
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+    }
+
+    #container {
+        display: flex;
+        width: 100%;
+        height: 100vh;
+    }
+
+    #columns1 {
+        min-width: 200px;
+        width: 200px;
+    }
+
+    #columns2 {
+        min-width: 100px;
+        flex-grow: 3;
+        flex-shrink: 3;
+    }
+
+    #columns3 {
+        min-width: 300px;
+        width: 300px;
+    }
+
+    .box {
+        border: 1px solid;
+        height: 100%;
+    }
+
+    @media only screen and (max-width: 600px) {
+        body {
+            overflow-x: scroll;
+        }
+    }
+</style>
+
+<body>
+    <div id="container">
+        <div id="columns1" class="box">
+            <input id="number" type="number" onkeyup="checkNumber(this.value)" />
+        </div>
+        <div id="columns2" class="box">
+            <select name="kind" id="method" onchange="calculate()">
+                <option value="isPrime">isPrime</option>
+                <option value="isFibonacci">isFibonacci</option>
+            </select>
+        </div>
+        <div id="columns3" class="box"></div>
+    </div>
+</body>
+
+<script>
+    function checkNumber(val) {
+        var afterRound = Math.round(val);
+
+        if (afterRound < 0) {
+            document.getElementById("number").value = 1;
+        } else {
+            document.getElementById("number").value = afterRound;
+        }
+
+        calculate();
+    }
+
+    function calculate() {
+        var column1 = document.getElementById("number").value;
+        var column2 = document.getElementById("method").value;
+        var column3;
+
+        switch (column2) {
+            case "isPrime":
+                column3 = isPrime(column1);
+                console.log(column3);
+                document.getElementById("columns3").innerHTML = column3.toString();
+                break;
+            case "isFibonacci":
+                column3 = isFibonacci(column1);
+                console.log(column3);
+                document.getElementById("columns3").innerHTML = column3.toString();
+                break;
+            default:
+                column3 = false;
+                console.log(column3);
+                document.getElementById("columns3").innerHTML = column3.toString();
+                break;
+        }
+    }
+
+    function isPrime(n) {
+        if (isNaN(n) || !isFinite(n) || n % 1 || n < 2) return false;
+        var m = Math.sqrt(n);
+        for (var i = 2; i <= m; i++)
+            if (n % i == 0) return false;
+        return true;
+    }
+
+    function isFibonacci(query, count = 1, last = 0) {
+        if (count < query) {
+            return isFibonacci(query, count + last, count);
+        };
+        if (count === query) {
+            return true;
+        }
+        return false;
+    }
+</script>
+
+</html>
